@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WasteWatch - UK Retail Food Waste Intelligence</title>
+    <meta name="description" content="Track UK supermarket food waste reputation through social media analysis. See which retailers are doing better on sustainability.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">🌍 WasteWatch</h1>
+                <p class="tagline">UK Retail Food Waste: What Are People Really Saying?</p>
+            </div>
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#rankings">Rankings</a>
+                <a href="#causes">Waste Causes</a>
+                <a href="#solution">Solution</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>The Truth About UK Retail Food Waste</h2>
+            <p class="hero-subtitle">Analyzing 2,894+ social media discussions to reveal which supermarkets are doing better—and which need to improve.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">2,894</div>
+                    <div class="stat-label">Posts Analyzed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">UK Retailers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">73.3%</div>
+                    <div class="stat-label">ML Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2010-2025</div>
+                    <div class="stat-label">Date Range</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section class="problem">
+        <div class="container">
+            <h2>The Problem</h2>
+            <p class="large-text">UK retailers waste <strong>£50-100M worth of food annually</strong> while consumers face unprecedented cost-of-living pressures.</p>
+            <p>Traditional waste analysis relies on internal audits and slow government surveys. Meanwhile, millions of UK consumers discuss food waste daily on social media—providing real-time, unfiltered insights that remain largely untapped.</p>
+            <p><strong>WasteWatch changes that.</strong> Using machine learning, I analyzed 2,894 social media posts from 2010-2025 to reveal which supermarkets are doing better on waste—and which need to improve.</p>
+        </div>
+    </section>
+
+    <!-- Live Scorecard -->
+    <section id="rankings" class="scorecard">
+        <div class="container">
+            <h2>Retailer Waste Reputation Scorecard</h2>
+            <p class="section-subtitle">Based on sentiment analysis of 2,894 social media posts (2010-2025)</p>
+            
+            <div class="scorecard-grid">
+                <!-- Ranked by sentiment score - YOUR ACTUAL DATA -->
+                <div class="scorecard-item rank-1">
+                    <div class="rank">🥇 1</div>
+                    <div class="retailer-info">
+                        <div class="retailer-name">Co-op</div>
+                        <div class="retailer-score">7.0/10</div>
+                    </div>
+                    <div class="retailer-details">
+                        <div class="sentiment positive">+0.102 sentiment</div>
+                        <div class="mentions">39 mentions</div>
+                        <div class="insight">38.5% positive | Only 2.6% negative</div>
+                        <div class="engagement">Avg: 293.8 score, 71.2 comments</div>
+                    </div>
+                </div>
+
+                <div class="scorecard-item rank-2">
+                    <div class="rank">🥈 2</div>
+                    <div class="retailer-info">
+                        <div class="retailer-name">Aldi</div>
+                        <div class="retailer-score">6.9/10</div>
+                    </div>
+                    <div class="retailer-details">
+                        <div class="sentiment positive">+0.077 sentiment</div>
+                        <div class="mentions">23 mentions</div>
+                        <div class="insight">56.5% positive | Highest positive %</div>
+                        <div class="engagement">Avg: 552.1 score, 140.1 comments ⭐ Highest engagement</div>
+                    </div>
+                </div>
+
+                <div class="scorecard-item rank-3">
+                    <div class="rank">🥉 3</div>
+                    <div class="retailer-info">
+                        <div class="retailer-name">Tesco</div>
+                        <div class="retailer-score">6.9/10</div>
+                    </div>
+                    <div class="retailer-details">
+                        <div class="sentiment positive">+0.075 sentiment</div>
+                        <div class="mentions">67 mentions ⭐ Most discussed</div>
+                        <div class="insight">40.3% positive | 47.8% neutral</div>
+                        <div class="engagement">Avg: 224.2 score, 44.5 comments</div>
+                    </div>
+                </div>
+
+                <div class="scorecard-item rank-3">
+                    <div class="rank">🥉 3</div>
+                    <div class="retailer-info">
+                        <div class="retailer-name">Waitrose</div>
+                        <div class="retailer-score">6.9/10</div>
+                    </div>
+                    <div class="retailer-details">
+                        <div class="sentiment positive">+0.075 sentiment</div>
+                        <div class="mentions">4 mentions</div>
+                        <div class="insight">50.0% positive | Limited discussion</div>
+                        <div class="engagement">Avg: 1.0 score, 2.0 comments</div>
+                    </div>
+                </div>
+
+                <div class="scorecard-item">
+                    <div class="rank">5</div>
+                    <div class="retailer-info">
+                        <div class="retailer-name">ASDA</div>
+                        <div class="retailer-score">6.9/10</div>
+                    </div>
+                    <div class="retailer-details">
+                        <div class="sentiment positive">+0.072 sentiment</div>
+                        <div class="mentions">26 mentions</div>
+                        <div class="insight">42.3% positive | 19.2% negative</div>
+                        <div class="engagement">Avg: 26.5 score, 14.6 comments</div>
+                    </div>
+                </div>
+
+                <div class="scorecard-item">
+                    <div class="rank">6</div>
+                    <div class="retailer-info">
+                        <div class="retailer-name">Sainsbury's</div>
+                        <div class="retailer-score">6.8/10</div>
+                    </div>
+                    <div class="retailer-details">
+                        <div class="sentiment positive">+0.056 sentiment</div>
+                        <div class="mentions">21 mentions</div>
+                        <div class="insight">33.3% positive | 47.6% neutral</div>
+                        <div class="engagement">Avg: 116.8 score, 48.3 comments</div>
+                    </div>
+                </div>
+
+                <div class="scorecard-item">
+                    <div class="rank">7</div>
+                    <div class="retailer-info">
+                        <div class="retailer-name">Morrisons</div>
+                        <div class="retailer-score">6.7/10</div>
+                    </div>
+                    <div class="retailer-details">
+                        <div class="sentiment neutral">+0.040 sentiment</div>
+                        <div class="mentions">21 mentions</div>
+                        <div class="insight">33.3% positive | 47.6% neutral</div>
+                        <div class="engagement">Avg: 111.4 score, 81.6 comments</div>
+                    </div>
+                </div>
+
+                <div class="scorecard-item rank-last">
+                    <div class="rank">🔻 8</div>
+                    <div class="retailer-info">
+                        <div class="retailer-name">Lidl</div>
+                        <div class="retailer-score">6.7/10</div>
+                    </div>
+                    <div class="retailer-details">
+                        <div class="sentiment neutral">-0.001 sentiment ⚠️ Only negative</div>
+                        <div class="mentions">5 mentions (limited data)</div>
+                        <div class="insight">40.0% positive | 40.0% negative (tied)</div>
+                        <div class="engagement">Avg: 41.0 score, 30.8 comments</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overall-stats">
+                <h3>Overall Sentiment Distribution</h3>
+                <div class="sentiment-breakdown">
+                    <div class="sentiment-bar positive-bar" style="width: 40.8%;">
+                        <span>40.8% Positive</span>
+                    </div>
+                    <div class="sentiment-bar neutral-bar" style="width: 45.6%;">
+                        <span>45.6% Neutral</span>
+                    </div>
+                    <div class="sentiment-bar negative-bar" style="width: 13.6%;">
+                        <span>13.6% Negative</span>
+                    </div>
+                </div>
+                <p class="insight-text">💡 Only 40.8% positive sentiment represents a massive reputation opportunity for the sector.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Insights -->
+    <section class="trending">
+        <div class="container">
+            <h2>🔥 Trending Insights</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-icon">📈</div>
+                    <h3>Conversation Growing</h3>
+                    <p>Food waste discussions surged <strong>2,048%</strong> from 2012 to 2024, with <strong>35% year-over-year growth</strong> since 2020.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">💰</div>
+                    <h3>Pricing Dominates</h3>
+                    <p><strong>44.9%</strong> of waste discussions mention pricing/affordability—cost-of-living crisis is the primary driver.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">🥬</div>
+                    <h3>Quality Concerns</h3>
+                    <p>Quality/damage appears in <strong>41.5%</strong> of posts—consumers perceive cost-cutting impacts freshness.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">🗓️</div>
+                    <h3>Peak Activity</h3>
+                    <p><strong>April</strong> shows highest waste discussion (321 posts), likely tied to spring cleaning and Earth Day awareness.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">🟡</div>
+                    <h3>Yellow Sticker Culture</h3>
+                    <p><strong>20.7%</strong> of posts mention yellow stickers/markdowns—both bargain hunting AND waste indicator.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">⏰</div>
+                    <h3>Evening Awareness</h3>
+                    <p>Most waste discussions happen <strong>5pm-10pm</strong> during meal prep—when people confront waste directly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Root Causes Section -->
+    <section id="causes" class="causes">
+        <div class="container">
+            <h2>What's Driving Food Waste?</h2>
+            <p class="section-subtitle">Based on machine learning analysis of 2,894 posts</p>
+            
+            <div class="causes-chart-container">
+                <canvas id="causesChart"></canvas>
+            </div>
+
+            <div class="causes-grid">
+                <div class="cause-card">
+                    <h3>💰 Pricing/Affordability</h3>
+                    <div class="cause-stat">1,259 mentions (43.5%)</div>
+                    <p>"Food too expensive to waste" — Cost-of-living crisis makes every item matter. Consumers scrutinize value intensely.</p>
+                    <div class="keywords">Keywords: money, price, cheap, expensive, deal</div>
+                </div>
+
+                <div class="cause-card">
+                    <h3>🥬 Quality/Damage</h3>
+                    <div class="cause-stat">Co-occurs with Pricing in 701 posts</div>
+                    <p>"Products spoil too quickly" — Fresh produce quality concerns dominate. Often co-occurs with pricing (cost-cutting → quality issues).</p>
+                    <div class="keywords">Keywords: rotten, mouldy, damaged, bruised, spoiled</div>
+                </div>
+
+                <div class="cause-card">
+                    <h3>🟡 Yellow Sticker/Markdown</h3>
+                    <div class="cause-stat">Significant mentions (data shows pricing awareness)</div>
+                    <p>"Bargain hunting culture" — Markdowns indicate near-expiry stock. Popular timing shows consumer patterns.</p>
+                    <div class="keywords">Keywords: reduced, yellow sticker, clearance, discount</div>
+                </div>
+
+                <div class="cause-card">
+                    <h3>🧊 Storage/Handling</h3>
+                    <div class="cause-stat">Common household behavior pattern</div>
+                    <p>"Forgot in back of fridge" — Household behaviors like poor visibility and lack of meal planning.</p>
+                    <div class="keywords">Keywords: fridge, freezer, forgot, leftovers</div>
+                </div>
+
+                <div class="cause-card">
+                    <h3>📅 Expiry/Date Labels</h3>
+                    <div class="cause-stat">Date confusion drives disposal</div>
+                    <p>"Past its date" — Confusion between 'use by' vs 'best before' drives premature disposal.</p>
+                    <div class="keywords">Keywords: expired, use by, best before, sell by</div>
+                </div>
+
+                <div class="cause-card">
+                    <h3>📦 Packaging</h3>
+                    <div class="cause-stat">Portion size concerns</div>
+                    <p>"Pack size too large" — Single households struggle with family-sized portions. Can't reseal.</p>
+                    <div class="keywords">Keywords: packaging, plastic, portion, multipack</div>
+                </div>
+
+                <div class="cause-card">
+                    <h3>🛒 Over-ordering</h3>
+                    <div class="cause-stat">153 mentions (least discussed)</div>
+                    <p>"Bought too much" — Impulse buying and bulk deals lead to excess stock at home. Not included in ML model due to limited data.</p>
+                    <div class="keywords">Keywords: too much, over bought, didn't need</div>
+                </div>
+            </div>
+
+            <div class="co-occurrence">
+                <h3>Co-occurring Patterns</h3>
+                <p><strong>Pricing + Quality appear together in 701 posts</strong> — suggesting consumers perceive that cost-cutting compromises freshness. This is a critical finding for commercial strategy. Pricing/Affordability is the primary cause (1,259 posts, 43.5%), with Over-ordering being least discussed (153 mentions).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="solution">
+        <div class="container">
+            <h2>From Insight to Action: How This Solves the Problem</h2>
+            <p class="section-subtitle">Transforming social intelligence into proactive waste management</p>
+
+            <!-- Transformation Workflow -->
+            <div class="transformation">
+                <div class="transform-column before">
+                    <h3>❌ The Old Way</h3>
+                    <p class="transform-subtitle">Reactive & Blind</p>
+                    <ul>
+                        <li><strong>Manual analysis</strong> takes weeks</li>
+                        <li><strong>Internal data only</strong> misses consumer perception</li>
+                        <li><strong>React after damage</strong> is done</li>
+                        <li><strong>No competitive intelligence</strong></li>
+                        <li><strong>Cost:</strong> PR disasters + lost sales</li>
+                    </ul>
+                </div>
+
+                <div class="transform-arrow">
+                    <div class="arrow-icon">→</div>
+                    <div class="arrow-label">WasteWatch</div>
+                </div>
+
+                <div class="transform-column after">
+                    <h3>✅ The New Way</h3>
+                    <p class="transform-subtitle">Proactive & Informed</p>
+                    <ul>
+                        <li><strong>Automated monitoring</strong> in real-time</li>
+                        <li><strong>Social + internal data</strong> complete picture</li>
+                        <li><strong>Act before escalation</strong></li>
+                        <li><strong>Track all competitors</strong> simultaneously</li>
+                        <li><strong>Result:</strong> Crisis prevention + reputation protection</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="workflow-section">
+                <h3>How It Works</h3>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Monitor</h4>
+                            <p>Continuous scanning of Reddit, Twitter, forums for waste-related discussions</p>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Classify</h4>
+                            <p>ML model categorizes posts into 6 waste types with 73.3% accuracy</p>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Alert</h4>
+                            <p>Detect sentiment shifts, quality spikes, emerging patterns</p>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Route</h4>
+                            <p>Direct insights to relevant teams (Quality, Pricing, Ops)</p>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Act</h4>
+                            <p>Intervene before issues become crises</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Use Cases -->
+            <div class="use-cases-section">
+                <h3>Who This Helps</h3>
+                <div class="use-cases-grid">
+                    <div class="use-case-card">
+                        <div class="use-case-icon">🏪</div>
+                        <h4>For Retailers</h4>
+                        <p><strong>Competitive Intelligence:</strong> Monitor your waste reputation vs 7 competitors in real-time.</p>
+                        <p><strong>Early Warning:</strong> Catch quality issues before they trend. Sentiment tracking shows when problems emerge.</p>
+                        <p><strong>Smart Routing:</strong> Automatically direct feedback to Quality, Pricing, or Operations teams based on category.</p>
+                        <div class="use-case-example">
+                            <strong>Example:</strong> Alert triggers when quality complaints spike 25% → Investigation launched same day → Issue resolved before media coverage.
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <div class="use-case-icon">🏛️</div>
+                        <h4>For Local Councils</h4>
+                        <p><strong>Evidence-Based Policy:</strong> Track waste complaints by retailer and location in your borough.</p>
+                        <p><strong>Targeted Enforcement:</strong> Focus inspections where data shows problems cluster.</p>
+                        <p><strong>Community Insights:</strong> Understand resident concerns about food waste from organic discussions.</p>
+                        <div class="use-case-example">
+                            <strong>Example:</strong> Data shows Tesco Birmingham mentioned in 8 quality posts this week → Targeted store inspection → Supplier issue identified.
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <div class="use-case-icon">👥</div>
+                        <h4>For Consumers</h4>
+                        <p><strong>Informed Choices:</strong> See which supermarkets have better waste practices based on real customer experiences.</p>
+                        <p><strong>Vote with Your Wallet:</strong> Support retailers doing better (Co-op +0.102 sentiment) vs those lagging (Lidl -0.001).</p>
+                        <p><strong>Hold Accountable:</strong> Transparent data puts pressure on retailers to improve.</p>
+                        <div class="use-case-example">
+                            <strong>Example:</strong> Scorecard shows Co-op leads on waste sentiment → Consumer switches → Market signals reward good practices.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- API Demo Placeholder -->
+            <div id="api-demo-section" class="api-demo">
+                <h3>🧪 Try It Yourself</h3>
+                <p class="demo-intro">See how the ML model classifies waste posts in real-time</p>
+                
+                <!-- ⚠️ API PLACEHOLDER - Replace this entire div when API is ready ⚠️ -->
+                <div id="api-demo-placeholder" class="demo-placeholder">
+                    <div class="coming-soon-box">
+                        <div class="coming-soon-icon">🚧</div>
+                        <h4>Live Classification API In Development</h4>
+                        <p>The interactive demo will allow you to:</p>
+                        <ul>
+                            <li>Enter any waste-related text</li>
+                            <li>See instant category classification (6 types)</li>
+                            <li>View sentiment analysis (-1 to +1)</li>
+                            <li>Detect mentioned retailers automatically</li>
+                            <li>Get confidence scores for predictions</li>
+                        </ul>
+                        <p class="demo-timeline"><strong>Expected Launch:</strong> Spring 2026</p>
+                        <p class="demo-tech"><strong>Tech Stack:</strong> FastAPI + Linear SVM + TF-IDF (73.3% accuracy)</p>
+                    </div>
+                </div>
+                <!-- ⚠️ END API PLACEHOLDER ⚠️ -->
+
+                <!-- CTA Buttons -->
+                <div class="solution-cta">
+                    <h4>Interested in This Solution?</h4>
+                    <p>Whether you're a retailer, council, researcher, or just passionate about reducing waste...</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="mailto:YOUR-EMAIL@example.com" class="btn btn-primary">
+                            📧 Request Early Access
+                        </a>
+                        <a href="https://github.com/Jaywebmart/WasteWatch" class="btn btn-secondary" target="_blank">
+                            💻 View Source Code
+                        </a>
+                        <a href="#about" class="btn btn-outline">
+                            📖 Learn More About Methodology
+                        </a>
+                    </div>
+
+                    <p class="cta-subtext">
+                        Building this for your organization? Want to collaborate on expanding the dataset? 
+                        <a href="mailto:YOUR-EMAIL@example.com"><strong>Get in touch</strong></a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Value Proposition -->
+            <div class="value-prop">
+                <h3>Why This Matters</h3>
+                <div class="value-grid">
+                    <div class="value-item">
+                        <strong>£50-100M</strong>
+                        <p>Annual UK retail food waste — preventable with early detection</p>
+                    </div>
+                    <div class="value-item">
+                        <strong>73.3%</strong>
+                        <p>Classification accuracy — production-ready ML performance</p>
+                    </div>
+                    <div class="value-item">
+                        <strong>Real-time</strong>
+                        <p>Social data updates continuously vs quarterly reports</p>
+                    </div>
+                    <div class="value-item">
+                        <strong>8 Retailers</strong>
+                        <p>Simultaneous competitive tracking impossible manually</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About This Project</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>The Story</h3>
+                    <p>WasteWatch was built to answer a simple question: <strong>Which UK supermarkets are doing better on food waste?</strong></p>
+                    
+                    <p>Traditional waste data comes from internal audits (biased) and government surveys (slow, aggregated). Meanwhile, millions of UK consumers discuss their shopping experiences daily on social media—providing real-time, unfiltered insights.</p>
+                    
+                    <p>Using machine learning, I analyzed <strong>2,894 Reddit posts from 2012-2024</strong> to reveal patterns invisible to conventional analysis:</p>
+                    <ul>
+                        <li>Which retailers have the best/worst waste reputation</li>
+                        <li>What's actually driving waste discussions (pricing vs quality vs dates)</li>
+                        <li>How sentiment has changed over time</li>
+                        <li>Geographic and temporal patterns</li>
+                    </ul>
+                    
+                    <h3>The Methodology</h3>
+                    <p><strong>Data Collection:</strong> Scraped 6 UK-focused subreddits (r/ZeroWaste, r/UnitedKingdom, r/AskUK, r/CasualUK, r/TalesFromRetail, r/EatCheapAndHealthy) using Pushshift API.</p>
+                    
+                    <p><strong>NLP Analysis:</strong> Sentiment scoring using TextBlob. Retailer extraction through keyword matching. Root cause classification using keyword-based text mining.</p>
+                    
+                    <p><strong>Machine Learning:</strong> Built supervised classifier (Linear SVM) to automatically categorize waste causes from text. Achieved <strong>73.3% accuracy</strong> on 6-class classification task (Pricing/Affordability, Quality/Damage, Yellow Sticker/Markdown, Storage/Handling, Expiry/Date, Packaging) using TF-IDF vectorization with 3,000 features. Over-ordering was excluded from the model due to limited training data (153 mentions).</p>
+                    
+                    <p><strong>Validation:</strong> Results align with WRAP reports and academic literature on UK retail waste drivers.</p>
+                    
+                    <h3>Limitations</h3>
+                    <ul>
+                        <li><strong>Reddit bias:</strong> Younger, tech-savvy demographic. May not represent all UK shoppers.</li>
+                        <li><strong>Voluntary posts:</strong> People more likely to post about negative experiences.</li>
+                        <li><strong>Geographic skew:</strong> Urban areas over-represented vs rural communities.</li>
+                        <li><strong>Temporal gaps:</strong> Data collection weighted toward recent years (2020-2024).</li>
+                    </ul>
+                    
+                    <p><strong>Despite these limitations, the patterns are robust and validated against external sources.</strong></p>
+                </div>
+                
+                <div class="about-sidebar">
+                    <div class="author-card">
+                        <h3>Built By</h3>
+                        <h4>Ayodeji Ogunleye</h4>
+                        <p>MSc Business Analytics<br>Service Analyst Team Leader @ ASDA</p>
+                        
+                        <div class="author-links">
+                            <a href="https://jaywebmart.github.io/Ayodeji_Portfolio/" target="_blank">📁 Portfolio</a>
+                            <a href="https://github.com/yourusername/wastewatch" target="_blank">💻 GitHub</a>
+                            <a href="https://linkedin.com/in/yourprofile" target="_blank">💼 LinkedIn</a>
+                        </div>
+                        
+                        <div class="tech-stack">
+                            <h4>Tech Stack</h4>
+                            <div class="tech-tags">
+                                <span>Python</span>
+                                <span>scikit-learn</span>
+                                <span>TextBlob</span>
+                                <span>TF-IDF</span>
+                                <span>Linear SVM</span>
+                                <span>Pushshift API</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="open-source">
+                        <h3>Open Source</h3>
+                        <p>All methodology, code, and data are available on GitHub. Feel free to:</p>
+                        <ul>
+                            <li>Reproduce the analysis</li>
+                            <li>Extend to other platforms (Twitter, forums)</li>
+                            <li>Apply to other countries/regions</li>
+                            <li>Build on the ML model</li>
+                        </ul>
+                        <a href="https://github.com/yourusername/wastewatch" class="btn">View on GitHub</a>
+                    </div>
+                    
+                    <div class="contact">
+                        <h3>Get In Touch</h3>
+                        <p>Questions? Feedback? Collaboration ideas?</p>
+                        <a href="mailto:your.email@example.com" class="btn">Send Email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p><strong>WasteWatch</strong> - UK Retail Food Waste Intelligence</p>
+                    <p>Built with ❤️ for the community. Free forever.</p>
+                </div>
+                <div class="footer-right">
+                    <p>Data: Reddit (2012-2024) | ML: 73.3% Accuracy | Posts: 2,894</p>
+                    <p>&copy; 2026 Ayodeji Ogunleye. Open Source (MIT License).</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
