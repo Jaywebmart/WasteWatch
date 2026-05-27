@@ -1,0 +1,424 @@
+/* ============================================================
+   WasteWatch — Curiosity project, casual but considered
+   ============================================================ */
+
+:root {
+    --bg: #fafaf7;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #555555;
+    --text-faint: #888888;
+    --rule: #e5e3dd;
+    --rule-soft: #efede7;
+    --accent: #006d77;
+    --accent-soft: #e8f1f2;
+    --positive: #2d5a3d;
+    --negative: #8b2c2c;
+    --neutral: #555555;
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', Monaco, monospace;
+
+    --max-width: 680px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 17px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Page ---------- */
+.page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 64px 24px 80px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+    margin-bottom: 48px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--rule);
+}
+
+.kicker {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.site-title {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+    color: var(--text);
+    font-variation-settings: "SOFT" 30, "WONK" 0;
+}
+
+.site-tagline {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.35;
+    margin-bottom: 32px;
+    max-width: 540px;
+    font-weight: 400;
+}
+
+.byline {
+    font-family: var(--font-body);
+}
+
+.byline-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.byline-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.byline-meta a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.byline-meta a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* ---------- Nav ---------- */
+.page-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 28px;
+    margin-bottom: 56px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.88rem;
+}
+
+.page-nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.page-nav a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+/* ---------- Sections ---------- */
+.content-section {
+    margin-bottom: 56px;
+}
+
+.content-section h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 24px;
+    letter-spacing: -0.015em;
+}
+
+.content-section h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text);
+    margin-top: 40px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+}
+
+.content-section p {
+    margin-bottom: 18px;
+    color: var(--text);
+    font-size: 1.02rem;
+}
+
+.content-section p:last-child {
+    margin-bottom: 0;
+}
+
+/* Lede */
+.lede {
+    font-family: var(--font-display);
+    font-size: 1.4rem !important;
+    line-height: 1.4 !important;
+    color: var(--text);
+    margin-bottom: 24px !important;
+    font-weight: 500;
+}
+
+/* ---------- Links ---------- */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-soft);
+    transition: border-color 0.2s;
+}
+
+a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* ---------- Strong / emphasis ---------- */
+strong {
+    font-weight: 600;
+    color: var(--text);
+}
+
+em {
+    font-style: italic;
+}
+
+/* ---------- Lists ---------- */
+.caveats {
+    list-style: none;
+    margin: 16px 0;
+    padding: 0;
+}
+
+.caveats li {
+    padding: 14px 0 14px 20px;
+    border-bottom: 1px solid var(--rule-soft);
+    position: relative;
+    line-height: 1.55;
+}
+
+.caveats li:last-child {
+    border-bottom: none;
+}
+
+.caveats li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* ---------- Tables ---------- */
+.table-wrap {
+    margin: 24px 0;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    background: var(--bg-card);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.data-table thead {
+    background: var(--bg);
+    border-top: 1px solid var(--text);
+    border-bottom: 1px solid var(--text);
+}
+
+.data-table th {
+    padding: 11px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: var(--text);
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.data-table th.num,
+.data-table td.num {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-feature-settings: "tnum" 1;
+}
+
+.data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--rule-soft);
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: 1px solid var(--text);
+}
+
+.data-table .positive { color: var(--positive); font-weight: 500; }
+.data-table .negative { color: var(--negative); font-weight: 500; }
+.data-table .neutral { color: var(--neutral); }
+
+.table-note {
+    font-size: 0.85rem !important;
+    color: var(--text-muted) !important;
+    margin-top: 12px !important;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* ---------- Charts ---------- */
+.chart-wrap {
+    margin: 28px 0;
+    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+}
+
+.chart-wrap canvas {
+    max-height: 400px;
+}
+
+.caption {
+    font-size: 0.85rem !important;
+    color: var(--text-muted) !important;
+    margin-top: 14px !important;
+    line-height: 1.5;
+    text-align: center;
+    font-style: italic;
+}
+
+/* ---------- Demo box ---------- */
+.demo-box {
+    margin: 20px 0;
+    padding: 24px;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+}
+
+.demo-box p {
+    font-size: 0.97rem !important;
+    margin-bottom: 12px !important;
+}
+
+.demo-box p:last-child {
+    margin-bottom: 0 !important;
+}
+
+.status {
+    font-size: 0.85rem !important;
+    color: var(--text-muted) !important;
+}
+
+.status-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    background: var(--accent);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+    margin-top: 72px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.site-footer p {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.site-footer p:last-child {
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: var(--text-faint);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 680px) {
+    html {
+        font-size: 16px;
+    }
+
+    .page {
+        padding: 40px 18px 60px;
+    }
+
+    .site-title {
+        font-size: 2.6rem;
+    }
+
+    .site-tagline {
+        font-size: 1.15rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.6rem;
+    }
+
+    .content-section h3 {
+        font-size: 1.2rem;
+    }
+
+    .lede {
+        font-size: 1.2rem !important;
+    }
+
+    .page-nav {
+        font-size: 0.82rem;
+        gap: 12px 18px;
+    }
+
+    .data-table {
+        font-size: 0.82rem;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 8px 10px;
+    }
+
+    .chart-wrap {
+        padding: 14px;
+    }
+}

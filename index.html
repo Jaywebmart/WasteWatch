@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WasteWatch — What 2,894 Reddit posts told me about UK food waste</title>
+    <meta name="description" content="A curiosity project: scraping Reddit to understand what UK consumers actually say about food waste in supermarkets, and building an ML classifier on the results.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="page">
+
+        <!-- Header -->
+        <header class="site-header">
+            <p class="kicker">A curiosity project</p>
+            <h1 class="site-title">WasteWatch</h1>
+            <p class="site-tagline">What 2,894 Reddit posts told me about UK food waste in supermarkets</p>
+
+            <div class="byline">
+                <p class="byline-name">Ayodeji Oroboade</p>
+                <p class="byline-meta">MSc Business Analytics · <a href="mailto:Ayodejij147@gmail.com">your.email@example.com</a></p>
+                <p class="byline-meta">May 2026</p>
+            </div>
+        </header>
+
+        <!-- Nav -->
+        <nav class="page-nav">
+            <a href="#intro">The question</a>
+            <a href="#approach">What I did</a>
+            <a href="#findings">What I found</a>
+            <a href="#solution">Where this could go</a>
+            <a href="#honest">The honest bits</a>
+        </nav>
+
+        <!-- Intro -->
+        <section id="intro" class="content-section">
+            <p class="lede">I work as an analyst, and one day I started wondering: what do UK consumers actually say about food waste in supermarkets when nobody's running a survey at them? Reddit seemed like a good place to look. So I scraped it.</p>
+
+            <p>What started as a weekend curiosity turned into 2,894 posts, six subreddits, fifteen years of data, and a machine learning model. This page is what came out of it; the patterns I found, the supermarkets that came out looking better or worse, and what I think could be built on top of it.</p>
+
+            <p>It's not a study. I'm not a researcher. But the numbers are real, the code is on <a href="https://github.com/Jaywebmart/WasteWatch" target="_blank" rel="noopener">GitHub</a>, and I tried to be honest about what the data can and can't tell us.</p>
+        </section>
+
+        <!-- The question -->
+        <section id="question" class="content-section">
+            <h2>Why bother?</h2>
+
+            <p>The UK throws away around <a href="https://wrap.org.uk/" target="_blank" rel="noopener">9.5 million tonnes of food annually</a>, with retailers responsible for a significant share. There's plenty of data on the tonnage, but consumer <em>perception</em> of which supermarkets are doing better or worse on waste? Mostly locked inside expensive consultancy reports, or buried in survey PDFs.</p>
+
+            <p>Meanwhile, people complain about supermarket food waste on Reddit constantly. Markdown avocados from Tesco. Reduced-section bargains from Co-op. Pack sizes that are too big for one person. Use-by dates that don't match reality. It's all there free, public, and unfiltered.</p>
+
+            <p>So I wanted to see: if you just listen to what people are saying, does a picture emerge? Do some retailers come out looking better than others? What are people actually angry about?</p>
+        </section>
+
+        <!-- What I did -->
+        <section id="approach" class="content-section">
+            <h2>What I did</h2>
+
+            <p>The short version: I pulled 2,894 posts from six UK-focused subreddits using the Pushshift API, scored each one for sentiment, looked for retailer mentions, tagged posts by what they were actually about, and trained a classifier to do the tagging automatically.</p>
+
+            <p>The six communities I pulled from:</p>
+
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Subreddit</th>
+                            <th class="num">Posts</th>
+                            <th class="num">Share</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>r/TalesFromRetail</td><td class="num">638</td><td class="num">22.0%</td></tr>
+                        <tr><td>r/ZeroWaste</td><td class="num">518</td><td class="num">17.9%</td></tr>
+                        <tr><td>r/AskUK</td><td class="num">502</td><td class="num">17.3%</td></tr>
+                        <tr><td>r/EatCheapAndHealthy</td><td class="num">458</td><td class="num">15.8%</td></tr>
+                        <tr><td>r/CasualUK</td><td class="num">410</td><td class="num">14.2%</td></tr>
+                        <tr><td>r/unitedkingdom</td><td class="num">368</td><td class="num">12.7%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>For each post: TextBlob to get a sentiment score (-1 to +1), keyword matching to spot when one of the major UK supermarkets was mentioned, and another round of keyword matching to flag which of seven common waste themes the post touched on pricing, quality, expiry dates, yellow stickers, storage, packaging, over-ordering.</p>
+
+            <p>Then for the ML side: TF-IDF on the text, 3,000 features, and three classifiers tested; Logistic Regression, Random Forest, and Linear SVM. Linear SVM won (No surprises; SVMs are sweet turnkey models that perform well with classifiers), hitting 73.3% accuracy on held-out test data across six categories. (Over-ordering didn't have enough examples to make it into the model.)</p>
+        </section>
+
+        <!-- What I found -->
+        <section id="findings" class="content-section">
+            <h2>What I found</h2>
+
+            <h3>Pricing dominates everything</h3>
+            <p>Out of 2,894 posts, 1,259 of them, 43.5% touched on pricing or affordability. That's by far the most common theme. The least common was over-ordering, which only showed up in 153 posts.</p>
+
+            <div class="chart-wrap">
+                <canvas id="causesChart"></canvas>
+                <p class="caption">What people are actually talking about. Pricing concerns appear in nearly half of all posts. Cost-of-living context is doing a lot of work here.</p>
+            </div>
+
+            <p>But the more interesting finding is what shows up <em>together</em>. Quality concerns and pricing concerns co-occurred in 700 posts meaning about a quarter of the entire corpus contains both. People aren't separating "this is too expensive" from "this isn't fresh enough." They see them as part of the same problem: retailers cutting corners on quality to hit a price point.</p>
+
+            <p>If you're at a supermarket trying to figure out where your reputation is leaking, that's the leak.</p>
+
+            <h3>Which supermarkets come out looking better?</h3>
+            <p>I picked up mentions of eight major UK supermarkets in the data. Here they are, ranked by average sentiment score:</p>
+
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Retailer</th>
+                            <th class="num">Mentions</th>
+                            <th class="num">Sentiment</th>
+                            <th class="num">Positive</th>
+                            <th class="num">Neutral</th>
+                            <th class="num">Negative</th>
+                            <th class="num">Avg engagement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Co-op</td><td class="num">39</td><td class="num positive">+0.102</td><td class="num">38.5%</td><td class="num">59.0%</td><td class="num">2.6%</td><td class="num">293.8</td></tr>
+                        <tr><td>Aldi</td><td class="num">23</td><td class="num positive">+0.077</td><td class="num">56.5%</td><td class="num">30.4%</td><td class="num">13.0%</td><td class="num">552.1</td></tr>
+                        <tr><td>Tesco</td><td class="num">67</td><td class="num positive">+0.075</td><td class="num">40.3%</td><td class="num">47.8%</td><td class="num">11.9%</td><td class="num">224.2</td></tr>
+                        <tr><td>Waitrose</td><td class="num">4</td><td class="num positive">+0.075</td><td class="num">50.0%</td><td class="num">25.0%</td><td class="num">25.0%</td><td class="num">1.0</td></tr>
+                        <tr><td>ASDA</td><td class="num">26</td><td class="num positive">+0.072</td><td class="num">42.3%</td><td class="num">38.5%</td><td class="num">19.2%</td><td class="num">26.5</td></tr>
+                        <tr><td>Sainsbury's</td><td class="num">21</td><td class="num positive">+0.056</td><td class="num">33.3%</td><td class="num">47.6%</td><td class="num">19.0%</td><td class="num">116.8</td></tr>
+                        <tr><td>Morrisons</td><td class="num">21</td><td class="num neutral">+0.040</td><td class="num">33.3%</td><td class="num">47.6%</td><td class="num">19.0%</td><td class="num">111.4</td></tr>
+                        <tr><td>Lidl</td><td class="num">5</td><td class="num negative">−0.001</td><td class="num">40.0%</td><td class="num">20.0%</td><td class="num">40.0%</td><td class="num">41.0</td></tr>
+                    </tbody>
+                </table>
+                <p class="table-note">Engagement = average Reddit score (upvotes minus downvotes) on posts mentioning that retailer. Waitrose and Lidl have very small sample sizes — take their rankings with a pinch of salt.</p>
+            </div>
+
+            <p>A few things jump out. <strong>Co-op</strong> tops the sentiment ranking and has the lowest share of negative posts only 2.6%. Whatever Co-op is doing on waste, people aren't angry about it. <strong>Tesco</strong> shows up most often (67 mentions) which makes sense given its market position, but its sentiment is middle-of-the-pack.</p>
+
+            <p>The most interesting one is <strong>Aldi</strong>. Only 23 mentions, but those posts get an average engagement score of 552 more than double anyone else. Aldi has a smaller volume of conversation but the conversations that do happen go viral. People care about what Aldi does.</p>
+
+            <p><strong>Lidl</strong> is technically the only retailer with negative average sentiment, but with only 5 mentions, I wouldn't bet anything on that finding. It's flagged here for completeness.</p>
+
+            <p>Here's the same data, plotted sentiment on the x-axis, engagement on the y-axis. Bubble size shows mention count.</p>
+
+            <div class="chart-wrap">
+                <canvas id="retailerChart"></canvas>
+                <p class="caption">Where each retailer sits on sentiment and engagement. Aldi is the outlier on engagement; Co-op leads on sentiment; Tesco dominates the conversation volume.</p>
+            </div>
+
+            <h3>How sentiment splits overall</h3>
+            <p>Across all 2,894 posts: 40.8% positive, 45.6% neutral, 13.6% negative. The negative share is smaller than I expected. Most posts about food waste aren't angry rants they're either practical discussions or actively positive (people sharing yellow-sticker hauls, recipes for using up scraps, that kind of thing).</p>
+
+            <h3>The conversation is growing</h3>
+            <p>Food waste discussion on UK Reddit barely existed in 2010. By 2024 it was 525 posts a year. That's almost certainly partly a reflection of Reddit's own growth, but the jump from 2023 to 2024 (+52.6%) suggests the cost-of-living pressure has put waste squarely on people's minds.</p>
+
+            <h3>The classifier works, sort of</h3>
+            <p>The Linear SVM hits 73.3% accuracy on held-out data across six categories. That's respectable but not amazing. It's excellent at spotting pricing-related posts (94% recall, the most common class) and decent on most others, but it struggles with the smaller categories particularly Storage/Handling, where there just isn't enough training data.</p>
+
+            <p>The training accuracy of 99.7% versus 73.3% on test is a chunky gap, which means the model has memorised the training set more than I'd like. With more labelled data and some regularisation tuning, this would close.</p>
+        </section>
+
+        <!-- Where this could go -->
+        <section id="solution" class="content-section">
+            <h2>Where this could go</h2>
+
+            <p>So far this is a historical look a snapshot of fifteen years of UK food waste talk on Reddit. But the more interesting thing is what happens when you don't stop there.</p>
+
+            <p>The classifier exists. The pipeline works. There's no good reason this couldn't run live, scanning new posts as they appear, flagging emerging issues before they turn into headlines. Three groups of people who might actually find that useful:</p>
+
+            <h3>Retailers</h3>
+            <p>The version of this for retailers is competitive intelligence + early warning. Watch your own sentiment and your competitors' in real time. When the quality complaints start trending up at one of your store locations, you find out the day it starts, not the week the local paper picks it up. The category outputs map naturally to internal teams pricing complaints to commercial, quality issues to supplier relations, packaging feedback to product. Auto-routing is straightforward.</p>
+
+            <h3>Local councils and policymakers</h3>
+            <p>Geographically-tagged complaints would let councils see where waste issues cluster in their borough. Evidence-based enforcement, not vibes-based. The methodology and data are open, so academic and policy researchers can build on it too.</p>
+
+            <h3>The rest of us</h3>
+            <p>Honestly, this is the use case I care about most. A scoreboard of which supermarkets are doing better or worse on waste, updated as new conversations happen. Vote with your wallet. Pressure the laggards. Make the data uncomfortable for whoever's at the bottom.</p>
+
+            <!-- API placeholder -->
+            <h3>Try it (eventually)</h3>
+            <p>I'm building an API that lets you submit any text and get back a waste category, sentiment score, and any retailers it mentions using the trained Linear SVM described above.</p>
+
+            <div id="api-demo-placeholder" class="demo-box">
+                <p class="status">Status: <span class="status-tag">In development</span></p>
+                <p>The endpoint will be a single POST request: send some text, get back a structured classification result. Same model as section above, just exposed as a service.</p>
+                <p>Expected: Spring 2026. If you want early access, <a href="mailto:Ayodejij147@gmail.com">drop me a line</a>.</p>
+            </div>
+        </section>
+
+        <!-- The honest bits -->
+        <section id="honest" class="content-section">
+            <h2>The honest bits</h2>
+
+            <p>A few caveats I'd want anyone using this to know about:</p>
+
+            <ul class="caveats">
+                <li><strong>Reddit users aren't a representative slice of the UK.</strong> They skew younger, more urban, more digitally literate. So "what UK consumers think" is really "what UK Redditors think." Different thing.</li>
+                <li><strong>People post when they care enough to post.</strong> That probably overweights negative experiences relative to routine, fine ones. Most of your shopping trips don't generate Reddit posts.</li>
+                <li><strong>Some sample sizes are tiny.</strong> Waitrose: 4 mentions. Lidl: 5. Comparing them to retailers with 30-70 mentions is not really apples-to-apples.</li>
+                <li><strong>Most of the data is recent.</strong> The 2010-2025 range is a bit misleading, Reddit was small in the UK in 2010. Most posts come from 2020 onwards.</li>
+                <li><strong>TextBlob is a general-purpose sentiment tool.</strong> It probably misses some retail-specific nuance. A domain-specific model would do better.</li>
+                <li><strong>The classifier is overfitting.</strong> Train accuracy 99.7%, test 73.3% that's a real gap. More labelled data would help.</li>
+            </ul>
+
+            <p>None of these break the overall findings, but they're real, and I think pretending otherwise would be worse than just naming them.</p>
+
+            <h3>What I'd do next</h3>
+            <p>Broaden the data sources beyond Reddit (Twitter/X, regional forums, review sites). Build a domain-specific sentiment lexicon for retail. Add geographic tagging so we can do spatial analysis. Track whether interventions actually move the needle when retailers respond to issues. Get the API live so this becomes something people can actually use, not just read about.</p>
+
+            <p>If any of this sounds interesting to work on together, <a href="mailto:ayodejij147@gmail.com">my inbox is open</a>.</p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p><strong>Code:</strong> <a href="https://github.com/Jaywebmart/WasteWatch" target="_blank" rel="noopener">github.com/Jaywebmart/WasteWatch</a> (MIT licensed)</p>
+            <p><strong>Data sources:</strong> Pushshift Reddit archive; <a href="https://wrap.org.uk/" target="_blank" rel="noopener">WRAP UK</a> for tonnage context</p>
+            <p>© 2026 Ayodeji Oroboade</p>
+        </footer>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
