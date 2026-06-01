@@ -181,11 +181,73 @@
             <h3>Try it (eventually)</h3>
             <p>I'm building an API that lets you submit any text and get back a waste category, sentiment score, and any retailers it mentions using the trained Linear SVM described above.</p>
 
-            <div id="api-demo-placeholder" class="demo-box">
-                <p class="status">Status: <span class="status-tag">In development</span></p>
-                <p>The endpoint will be a single POST request: send some text, get back a structured classification result. Same model as section above, just exposed as a service.</p>
-                <p>Expected: Spring 2026. If you want early access, <a href="mailto:Ayodejij147@gmail.com">drop me a line</a>.</p>
+            <div id="api-demo-placeholder" class="demo-box demo-live">
+    <p class="status">Status: <span class="status-tag" style="background:#2d5a3d;">Live</span></p>
+
+    <label for="demo-input" style="display:block; font-weight:600; margin-bottom:8px;">
+        Try it. Type or paste a UK retail / food waste sentence:
+    </label>
+
+    <textarea
+        id="demo-input"
+        rows="3"
+        placeholder="e.g. Found mouldy bread at Tesco yesterday, total waste of money"
+        style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; font-family:inherit; font-size:0.95rem; margin-bottom:10px;"
+    ></textarea>
+
+    <button
+        onclick="classifyText()"
+        style="background:#006d77; color:white; border:none; padding:10px 20px; border-radius:4px; font-family:inherit; font-size:0.95rem; font-weight:500; cursor:pointer;"
+    >
+        Classify
+    </button>
+
+    <div id="demo-result" style="margin-top:16px;"></div>
+
+    <p style="font-size:0.82rem; color:#555; margin-top:14px; font-style:italic;">
+        Heads up: the model has a known bias toward the Pricing/Affordability category. Results from short or ambiguous inputs may drift toward that label.
+    </p>
+</div>
+
+<script>
+async function classifyText() {
+    const input = document.getElementById('demo-input').value.trim();
+    const resultDiv = document.getElementById('demo-result');
+
+    if (!input) {
+        resultDiv.innerHTML = '<p style="color:#8b2c2c;">Please enter some text first.</p>';
+        return;
+    }
+
+    resultDiv.innerHTML = '<p style="color:#555;">Classifying...</p>';
+
+    try {
+        const response = await fetch('https://Jaywebmart-wastewatch-api.hf.space/classify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: input })
+        });
+
+        if (!response.ok) throw new Error('API returned ' + response.status);
+        const data = await response.json();
+
+        const sentimentColor = data.sentiment_label === 'Positive' ? '#2d5a3d'
+                             : data.sentiment_label === 'Negative' ? '#8b2c2c'
+                             : '#555';
+
+        resultDiv.innerHTML = `
+            <div style="background:#fff; border:1px solid #ddd; border-radius:4px; padding:16px; font-family:'Inter', sans-serif;">
+                <p style="margin-bottom:10px;"><strong>Category:</strong> ${data.category}</p>
+                <p style="margin-bottom:10px;"><strong>Confidence:</strong> ${(data.confidence * 100).toFixed(1)}%</p>
+                <p style="margin-bottom:10px;"><strong>Sentiment:</strong> <span style="color:${sentimentColor};">${data.sentiment_label}</span> (score: ${data.sentiment_score})</p>
+                <p style="margin-bottom:0;"><strong>Retailer detected:</strong> ${data.retailer_mentioned || 'none'}</p>
             </div>
+        `;
+    } catch (err) {
+        resultDiv.innerHTML = `<p style="color:#8b2c2c;">Something went wrong: ${err.message}</p>`;
+    }
+}
+</script>
         </section>
 
         <!-- The honest bits -->
